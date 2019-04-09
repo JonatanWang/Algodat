@@ -59,6 +59,7 @@ public class PostfixEvaluator {
         // create stack for this evaluation
         operandStack = new Stack<>();
         String[] tokens = exp.split("\\s+");  // divid string with backspace
+        int answer = 0;
         
         try{
             for(String nextToken: tokens) {
@@ -84,7 +85,7 @@ public class PostfixEvaluator {
              * No more tokens - pop result from operand stack.
              * Stack should be empty after pop() answer.
              */
-            int answer = operandStack.pop();
+            answer = operandStack.pop();
             if(operandStack.empty()) {
                 return answer;
             } else {
@@ -94,5 +95,7 @@ public class PostfixEvaluator {
         } catch(EmptyStackException ex) {
             throw new SyntaxErrorException("Syntax Error: The stack is empty!");
         }   // End try-catch  
+       
+       return answer;
     }
 }
